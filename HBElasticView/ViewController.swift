@@ -23,6 +23,8 @@ class ViewController: UIViewController {
     private let r1ControlPointView = UIView()
     private let r2ControlPointView = UIView()
     private let r3ControlPointView = UIView()
+    // timer
+    private var displayLink: CADisplayLink!
 
     // MARK: -
 
@@ -66,6 +68,11 @@ class ViewController: UIViewController {
         // initial position of shape layer
         layoutControlPoints(baseHeight: minimalHeight, waveHeight: 0.0, locationX: view.bounds.width / 2.0)
         updateShapeLayer()
+
+        // update shape layer with time interval
+        displayLink = CADisplayLink(target: self, selector: Selector("updateShapeLayer"))
+        displayLink.addToRunLoop(NSRunLoop.mainRunLoop(), forMode: NSDefaultRunLoopMode)
+        displayLink.paused = true
     }
 
     override func viewDidLoad() {
