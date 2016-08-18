@@ -13,6 +13,7 @@
 		26D363BB1D65875B004BC42F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 26D363BA1D65875B004BC42F /* Assets.xcassets */; };
 		26D363BE1D65875B004BC42F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 26D363BC1D65875B004BC42F /* LaunchScreen.storyboard */; };
 		26D363C91D65875B004BC42F /* HBElasticViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26D363C81D65875B004BC42F /* HBElasticViewTests.swift */; };
+		26D363D41D658E75004BC42F /* HBElasticViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26D363D31D658E75004BC42F /* HBElasticViewExtension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,6 +37,7 @@
 		26D363C41D65875B004BC42F /* HBElasticViewTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HBElasticViewTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		26D363C81D65875B004BC42F /* HBElasticViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HBElasticViewTests.swift; sourceTree = "<group>"; };
 		26D363CA1D65875B004BC42F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		26D363D31D658E75004BC42F /* HBElasticViewExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HBElasticViewExtension.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,6 +81,7 @@
 			children = (
 				26D363B31D65875B004BC42F /* AppDelegate.swift */,
 				26D363B51D65875B004BC42F /* ViewController.swift */,
+				26D363D31D658E75004BC42F /* HBElasticViewExtension.swift */,
 				26D363B71D65875B004BC42F /* Main.storyboard */,
 				26D363BA1D65875B004BC42F /* Assets.xcassets */,
 				26D363BC1D65875B004BC42F /* LaunchScreen.storyboard */,
@@ -201,6 +204,7 @@
 			files = (
 				26D363B61D65875B004BC42F /* ViewController.swift in Sources */,
 				26D363B41D65875B004BC42F /* AppDelegate.swift in Sources */,
+				26D363D41D658E75004BC42F /* HBElasticViewExtension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
