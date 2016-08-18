@@ -22,6 +22,7 @@ class ViewController: UIViewController {
 
         shapeLayer.frame = CGRect(x: 0.0, y: 0.0, width: view.bounds.width, height: minimalHeight)
         shapeLayer.backgroundColor = UIColor(red: 57/255.0, green: 67/255.0, blue: 89/255.0, alpha: 1.0).CGColor
+        shapeLayer.actions = ["position" : NSNull(), "bounds" : NSNull(), "path" : NSNull()]
         view.layer.addSublayer(shapeLayer)
 
         view.addGestureRecognizer(UIPanGestureRecognizer(target: self, action: "panGestureDidMove:"))
