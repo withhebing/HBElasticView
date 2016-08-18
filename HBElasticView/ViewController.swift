@@ -31,7 +31,7 @@ class ViewController: UIViewController {
 
         // shape layer
         shapeLayer.frame = CGRect(x: 0.0, y: 0.0, width: view.bounds.width, height: minimalHeight)
-        shapeLayer.backgroundColor = UIColor(red: 57/255.0, green: 67/255.0, blue: 89/255.0, alpha: 1.0).CGColor
+        shapeLayer.fillColor = UIColor(red: 57/255.0, green: 67/255.0, blue: 89/255.0, alpha: 1.0).CGColor
         shapeLayer.actions = ["position" : NSNull(), "bounds" : NSNull(), "path" : NSNull()]
         view.layer.addSublayer(shapeLayer)
 
@@ -80,7 +80,15 @@ class ViewController: UIViewController {
         if gesture.state == .Ended || gesture.state == .Failed || gesture.state == .Cancelled {
 
         } else {
-            shapeLayer.frame.size.height = minimalHeight + max(gesture.translationInView(view).y, 0)
+            let additionalHeight = max(gesture.translationInView(view).y, 0)
+
+            let waveHeight = min(additionalHeight * 0.6, maxWaveHeight)
+            let baseHeight = minimalHeight + additionalHeight - waveHeight
+
+            let locationX = gesture.locationInView(gesture.view).x
+
+            layoutControlPoints(baseHeight: baseHeight, waveHeight: waveHeight, locationX: locationX)
+            updateShapeLayer()
         }
     }
 
@@ -89,6 +97,10 @@ class ViewController: UIViewController {
     }
 
     // shape layer path
+    func updateShapeLayer() {
+        shapeLayer.path = currentPath()
+    }
+
     private func currentPath() -> CGPath {
         let width = view.bounds.width
 
@@ -106,10 +118,23 @@ class ViewController: UIViewController {
         return bezierPath.CGPath
     }
 
-    func updateShapeLayer() {
-        shapeLayer.path = currentPath()
+    private func layoutControlPoints(baseHeight baseHeight: CGFloat, waveHeight: CGFloat, locationX: CGFloat) {
+        let width = view.bounds.width
+
+        let minLeftX = min((locationX - width / 2.0) * 0.28, 0.0)
+        let maxRightX = max(width + (locationX - width / 2.0) * 0.28, width)
+
+        let leftPartWidth = locationX - minLeftX
+        let rightPartWidth = maxRightX - locationX
+
+        l3ControlPointView.center = CGPoint(x: minLeftX, y: baseHeight)
+        l2ControlPointView.center = CGPoint(x: minLeftX + leftPartWidth * 0.44, y: baseHeight)
+        l1ControlPointView.center = CGPoint(x: minLeftX + leftPartWidth * 0.71, y: baseHeight + waveHeight * 0.64)
+        cControlPointView.center = CGPoint(x: locationX , y: baseHeight + waveHeight * 1.36)
+        r1ControlPointView.center = CGPoint(x: maxRightX - rightPartWidth * 0.71, y: baseHeight + waveHeight * 0.64)
+        r2ControlPointView.center = CGPoint(x: maxRightX - (rightPartWidth * 0.44), y: baseHeight)
+        r3ControlPointView.center = CGPoint(x: maxRightX, y: baseHeight)
     }
 
-    
 }
 
