@@ -14,7 +14,8 @@ class HBElasticView: UIView {
 
     private let shapeLayer = CAShapeLayer()
     private let minimalHeight: CGFloat = 64.0   // statusBar + navBar
-    private let maxWaveHeight: CGFloat = 100.0
+    private let middleHeight: CGFloat = 100.0
+    private let maxWaveHeight: CGFloat = 130.0
     // control points
     private let left3_ControlPoint = UIView()
     private let left2_ControlPoint = UIView()
@@ -94,10 +95,11 @@ class HBElasticView: UIView {
     // pan gesture action
     func panGestureDidMove(gesture: UIPanGestureRecognizer) {
         if gesture.state == .Ended || gesture.state == .Failed || gesture.state == .Cancelled {
-            let centerY = minimalHeight
+            var centerY = middleHeight
 
             animating = true
             UIView.animateWithDuration(0.9, delay: 0.0, usingSpringWithDamping: 0.57, initialSpringVelocity: 0.0, options: [], animations: { () -> Void in
+                // spring and suspended
                 self.left3_ControlPoint.center.y = centerY
                 self.left2_ControlPoint.center.y = centerY
                 self.left1_ControlPoint.center.y = centerY
@@ -106,7 +108,20 @@ class HBElasticView: UIView {
                 self.right2_ControlPoint.center.y = centerY
                 self.right3_ControlPoint.center.y = centerY
                 }, completion: { _ in
-                    self.animating = false
+
+                    UIView.animateWithDuration(0.5, delay: 0.5, options: [], animations: {
+                        // back to under navBar
+                        centerY = self.minimalHeight
+                        self.left3_ControlPoint.center.y = centerY
+                        self.left2_ControlPoint.center.y = centerY
+                        self.left1_ControlPoint.center.y = centerY
+                        self.center_ControlPoint.center.y = centerY
+                        self.right1_ControlPoint.center.y = centerY
+                        self.right2_ControlPoint.center.y = centerY
+                        self.right3_ControlPoint.center.y = centerY
+                        }, completion: { _ in
+                            self.animating = false
+                    })
             })
 
         } else {
