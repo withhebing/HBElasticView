@@ -9,7 +9,7 @@
 import UIKit
 
 extension UIView {
-    func dg_center(usePresentationLayerIfPossible: Bool) -> CGPoint {
+    func hb_center(usePresentationLayerIfPossible: Bool) -> CGPoint {
         if usePresentationLayerIfPossible, let presentationLayer = layer.presentationLayer() as? CALayer {
             return presentationLayer.position
         }
