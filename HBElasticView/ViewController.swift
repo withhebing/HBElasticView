@@ -25,6 +25,13 @@ class ViewController: UIViewController {
     private let r3ControlPointView = UIView()
     // timer
     private var displayLink: CADisplayLink!
+    // anim
+    private var animating = false {
+        didSet {
+            view.userInteractionEnabled = !animating
+            displayLink.paused = !animating
+        }
+    }
 
     // MARK: -
 
@@ -87,8 +94,23 @@ class ViewController: UIViewController {
 
     // MARK: - Methods
 
+    // pan gesture action
     func panGestureDidMove(gesture: UIPanGestureRecognizer) {
         if gesture.state == .Ended || gesture.state == .Failed || gesture.state == .Cancelled {
+            let centerY = minimalHeight
+
+            animating = true
+            UIView.animateWithDuration(0.9, delay: 0.0, usingSpringWithDamping: 0.57, initialSpringVelocity: 0.0, options: [], animations: { () -> Void in
+                self.l3ControlPointView.center.y = centerY
+                self.l2ControlPointView.center.y = centerY
+                self.l1ControlPointView.center.y = centerY
+                self.cControlPointView.center.y = centerY
+                self.r1ControlPointView.center.y = centerY
+                self.r2ControlPointView.center.y = centerY
+                self.r3ControlPointView.center.y = centerY
+                }, completion: { _ in
+                    self.animating = false
+            })
 
         } else {
             let additionalHeight = max(gesture.translationInView(view).y, 0)
@@ -97,7 +119,7 @@ class ViewController: UIViewController {
             let baseHeight = minimalHeight + additionalHeight - waveHeight
 
             let locationX = gesture.locationInView(gesture.view).x
-
+            
             layoutControlPoints(baseHeight: baseHeight, waveHeight: waveHeight, locationX: locationX)
             updateShapeLayer()
         }
@@ -118,10 +140,10 @@ class ViewController: UIViewController {
         let bezierPath = UIBezierPath()
 
         bezierPath.moveToPoint(CGPoint(x: 0.0, y: 0.0))
-        bezierPath.addLineToPoint(CGPoint(x: 0.0, y: l3ControlPointView.dg_center(false).y))
-        bezierPath.addCurveToPoint(l1ControlPointView.dg_center(false), controlPoint1: l3ControlPointView.dg_center(false), controlPoint2: l2ControlPointView.dg_center(false))
-        bezierPath.addCurveToPoint(r1ControlPointView.dg_center(false), controlPoint1: cControlPointView.dg_center(false), controlPoint2: r1ControlPointView.dg_center(false))
-        bezierPath.addCurveToPoint(r3ControlPointView.dg_center(false), controlPoint1: r1ControlPointView.dg_center(false), controlPoint2: r2ControlPointView.dg_center(false))
+        bezierPath.addLineToPoint(CGPoint(x: 0.0, y: l3ControlPointView.dg_center(animating).y))
+        bezierPath.addCurveToPoint(l1ControlPointView.dg_center(animating), controlPoint1: l3ControlPointView.dg_center(animating), controlPoint2: l2ControlPointView.dg_center(animating))
+        bezierPath.addCurveToPoint(r1ControlPointView.dg_center(animating), controlPoint1: cControlPointView.dg_center(animating), controlPoint2: r1ControlPointView.dg_center(animating))
+        bezierPath.addCurveToPoint(r3ControlPointView.dg_center(animating), controlPoint1: r1ControlPointView.dg_center(animating), controlPoint2: r2ControlPointView.dg_center(animating))
         bezierPath.addLineToPoint(CGPoint(x: width, y: 0.0))
 
         bezierPath.closePath()
@@ -129,6 +151,7 @@ class ViewController: UIViewController {
         return bezierPath.CGPath
     }
 
+    // layout control points to update shape layer
     private func layoutControlPoints(baseHeight baseHeight: CGFloat, waveHeight: CGFloat, locationX: CGFloat) {
         let width = view.bounds.width
 
