@@ -29,7 +29,7 @@ class ViewController: UIViewController {
     override func loadView() {
         super.loadView()
 
-        // shape layer
+        // setup shape layer
         shapeLayer.frame = CGRect(x: 0.0, y: 0.0, width: view.bounds.width, height: minimalHeight)
         shapeLayer.fillColor = UIColor(red: 57/255.0, green: 67/255.0, blue: 89/255.0, alpha: 1.0).CGColor
         shapeLayer.actions = ["position" : NSNull(), "bounds" : NSNull(), "path" : NSNull()]
@@ -62,6 +62,10 @@ class ViewController: UIViewController {
         view.addSubview(r1ControlPointView)  
         view.addSubview(r2ControlPointView)  
         view.addSubview(r3ControlPointView)
+
+        // initial position of shape layer
+        layoutControlPoints(baseHeight: minimalHeight, waveHeight: 0.0, locationX: view.bounds.width / 2.0)
+        updateShapeLayer()
     }
 
     override func viewDidLoad() {
