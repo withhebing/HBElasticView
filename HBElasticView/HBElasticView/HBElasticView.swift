@@ -15,7 +15,7 @@ class HBElasticView: UIView {
     private let shapeLayer = CAShapeLayer()
     private let minimalHeight: CGFloat = 64.0   // statusBar + navBar
     private let middleHeight: CGFloat = 100.0
-    private let maxWaveHeight: CGFloat = 130.0
+    private let maxWaveHeight: CGFloat = 75.0
     // control points
     private let left3_ControlPoint = UIView()
     private let left2_ControlPoint = UIView()
@@ -48,7 +48,7 @@ class HBElasticView: UIView {
     private func setupUI() {
         // setup shape layer
         shapeLayer.frame = CGRect(x: 0.0, y: 0.0, width: self.bounds.width, height: minimalHeight)
-        shapeLayer.fillColor = UIColor(red: 57/255.0, green: 67/255.0, blue: 89/255.0, alpha: 1.0).CGColor
+        shapeLayer.fillColor = UIColor(red: 231/255.0, green: 231/255.0, blue: 231/255.0, alpha: 1.0).CGColor
         shapeLayer.actions = ["position" : NSNull(), "bounds" : NSNull(), "path" : NSNull()]
         layer.addSublayer(shapeLayer)
 
@@ -125,12 +125,11 @@ class HBElasticView: UIView {
             })
 
         } else {
-            let additionalHeight = max(gesture.translationInView(self).y, 0)
-
-            let waveHeight = min(additionalHeight * 0.6, maxWaveHeight)
-            let baseHeight = minimalHeight + additionalHeight - waveHeight
-
             let locationX = gesture.locationInView(gesture.view).x
+
+            let additionalHeight = max(gesture.translationInView(self).y, 0)    // avoid less than 0
+            let waveHeight = min(additionalHeight * 0.5, maxWaveHeight)
+            let baseHeight = minimalHeight + additionalHeight * 0.5 - waveHeight    // * 0.5 to make scroll less sensitive
 
             layoutControlPoints(baseHeight: baseHeight, waveHeight: waveHeight, locationX: locationX)
             updateShapeLayer()
