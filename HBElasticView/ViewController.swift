@@ -88,5 +88,28 @@ class ViewController: UIViewController {
         return .LightContent
     }
 
+    // shape layer path
+    private func currentPath() -> CGPath {
+        let width = view.bounds.width
+
+        let bezierPath = UIBezierPath()
+
+        bezierPath.moveToPoint(CGPoint(x: 0.0, y: 0.0))
+        bezierPath.addLineToPoint(CGPoint(x: 0.0, y: l3ControlPointView.dg_center(false).y))
+        bezierPath.addCurveToPoint(l1ControlPointView.dg_center(false), controlPoint1: l3ControlPointView.dg_center(false), controlPoint2: l2ControlPointView.dg_center(false))
+        bezierPath.addCurveToPoint(r1ControlPointView.dg_center(false), controlPoint1: cControlPointView.dg_center(false), controlPoint2: r1ControlPointView.dg_center(false))
+        bezierPath.addCurveToPoint(r3ControlPointView.dg_center(false), controlPoint1: r1ControlPointView.dg_center(false), controlPoint2: r2ControlPointView.dg_center(false))
+        bezierPath.addLineToPoint(CGPoint(x: width, y: 0.0))
+
+        bezierPath.closePath()
+        
+        return bezierPath.CGPath
+    }
+
+    func updateShapeLayer() {
+        shapeLayer.path = currentPath()
+    }
+
+    
 }
 
