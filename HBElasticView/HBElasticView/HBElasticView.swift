@@ -13,7 +13,7 @@ class HBElasticView: UIView {
     // MARK: - Vars
 
     private let shapeLayer = CAShapeLayer()
-    private let minimalHeight: CGFloat = 50.0
+    private let minimalHeight: CGFloat = 64.0   // statusBar + navBar
     private let maxWaveHeight: CGFloat = 100.0
     // control points
     private let left3_ControlPoint = UIView()

@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		26D363B41D65875B004BC42F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26D363B31D65875B004BC42F /* AppDelegate.swift */; };
-		26D363B61D65875B004BC42F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26D363B51D65875B004BC42F /* ViewController.swift */; };
+		26D363B61D65875B004BC42F /* HBElasticViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26D363B51D65875B004BC42F /* HBElasticViewController.swift */; };
 		26D363B91D65875B004BC42F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 26D363B71D65875B004BC42F /* Main.storyboard */; };
 		26D363BB1D65875B004BC42F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 26D363BA1D65875B004BC42F /* Assets.xcassets */; };
 		26D363BE1D65875B004BC42F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 26D363BC1D65875B004BC42F /* LaunchScreen.storyboard */; };
@@ -30,7 +30,7 @@
 /* Begin PBXFileReference section */
 		26D363B01D65875B004BC42F /* HBElasticView.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HBElasticView.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		26D363B31D65875B004BC42F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		26D363B51D65875B004BC42F /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		26D363B51D65875B004BC42F /* HBElasticViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HBElasticViewController.swift; sourceTree = "<group>"; };
 		26D363B81D65875B004BC42F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		26D363BA1D65875B004BC42F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		26D363BD1D65875B004BC42F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -82,7 +82,7 @@
 			isa = PBXGroup;
 			children = (
 				26D363B31D65875B004BC42F /* AppDelegate.swift */,
-				26D363B51D65875B004BC42F /* ViewController.swift */,
+				26D363B51D65875B004BC42F /* HBElasticViewController.swift */,
 				26D363D51D659855004BC42F /* HBElasticView */,
 				26D363B71D65875B004BC42F /* Main.storyboard */,
 				26D363BA1D65875B004BC42F /* Assets.xcassets */,
@@ -214,7 +214,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				26D363D91D65987E004BC42F /* HBElasticView.swift in Sources */,
-				26D363B61D65875B004BC42F /* ViewController.swift in Sources */,
+				26D363B61D65875B004BC42F /* HBElasticViewController.swift in Sources */,
 				26D363D71D659855004BC42F /* UIView+Extension.swift in Sources */,
 				26D363B41D65875B004BC42F /* AppDelegate.swift in Sources */,
 			);
@@ -408,6 +408,7 @@
 				26D363CF1D65875B004BC42F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		26D363D01D65875B004BC42F /* Build configuration list for PBXNativeTarget "HBElasticViewTests" */ = {
 			isa = XCConfigurationList;
@@ -416,6 +417,7 @@
 				26D363D21D65875B004BC42F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
